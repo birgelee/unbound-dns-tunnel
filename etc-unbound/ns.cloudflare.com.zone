@@ -20,6 +20,6 @@ $ORIGIN ns.cloudflare.com. ; base domain-name
 
 ; name server RR for the domain
 
-@           IN      NS      ns3.ns.cloudflare.com.
-
+@           IN     NS      ns3.ns.cloudflare.com.
+@           IN     A       10.5.0.6
 *           IN     A       10.5.0.6

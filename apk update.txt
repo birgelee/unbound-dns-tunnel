@@ -6,3 +6,12 @@ apk update \
             && apk add --update tcpdump \
             && apk add --update bind-tools \
             && apk add --update bash
+
+
+// clientReq[2] = clientReq[2] | 0b00000001
+
+ln 83
+clientReq[4] = clientReq[4] | 0b00000001
+
+
+apt update; apt install tcpdump; tcpdump -i eth0 -n -vvv port 53 and host 10.5.0.6

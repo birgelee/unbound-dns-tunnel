@@ -23,10 +23,14 @@ WORKDIR $GOPATH
 RUN git clone https://github.com/LINKIWI/dotproxy.git
 
 WORKDIR dotproxy
+
+COPY src-dns-proxy/dns_proxy.go $GOPATH/dotproxy/internal/protocol/dns_proxy.go
+
 RUN go mod download
 #RUN go mod download github.com/certifi/gocertifi
 #RUN go mod download golang.org/x/tools
 #go get -d ./...
-#RUN make
 
-#RUN ./bin/dotproxy-$OS-$ARCH --help
+RUN make
+
+CMD ./bin/dotproxy-linux-amd64 -config /config/config.yaml 
