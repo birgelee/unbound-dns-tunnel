@@ -1,0 +1,33 @@
+services:
+  unbound:
+    image: "mvance/unbound:latest"
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./etc-unbound/unbound.conf:/opt/unbound/etc/unbound/unbound.conf
+      - ./etc-unbound/ns.cloudflare.com.zone:/opt/unbound/etc/unbound/ns.cloudflare.com.zone
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+  tunnel:
+    build:
+      context: "dns-proxy-custom"
+      args:
+        GO_VERSION: "1.15.15"
+    # ports:
+    #  - "53/tcp"
+    #  - "53/udp"
+    
+    volumes:
+      - ./etc-dot-proxy:/config
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1

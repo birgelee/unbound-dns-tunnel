@@ -1,0 +1,8 @@
+apk update \
+            && apk add --update sudo \
+            && apk add --update curl \
+            && apk add --update busybox-extras \
+            && apk add --update tcptraceroute \
+            && apk add --update tcpdump \
+            && apk add --update bind-tools \
+            && apk add --update bash

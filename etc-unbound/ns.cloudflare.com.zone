@@ -1,0 +1,25 @@
+$TTL 1    ; default TTL for zone
+
+$ORIGIN ns.cloudflare.com. ; base domain-name
+
+; Start of Authority RR defining the key characteristics of the zone (domain)
+
+@         IN      SOA   ns3.ns.cloudflare.com. dns.cloudflare.com. (
+
+                                2003080800 ; serial number
+
+                                12h        ; refresh
+
+                                15m        ; update retry
+
+                                3w         ; expiry
+
+                                2h         ; minimum
+
+                                )
+
+; name server RR for the domain
+
+@           IN      NS      ns3.ns.cloudflare.com.
+
+*           IN     A       10.5.0.6
